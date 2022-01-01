@@ -63,6 +63,19 @@ export default createStore({
         }
       }
     },
+    async LoadUser(context) {
+      context.commit("auth_request");
+      try {
+        const resp = await axios.get("/user/self");
+        const user = resp.data as User;
+        context.commit("auth_success", [context.state.token, user]);
+        return resp;
+      } catch (error) {
+        if (error instanceof Error) {
+          context.commit("auth_error", error.message);
+        }
+      }
+    },
     async Logout(context) {
       context.commit("auth_request");
       try {

@@ -50,6 +50,9 @@ export default defineComponent({
       this.$store.dispatch("Logout");
     },
   },
+  created() {
+    this.$store.dispatch("LoadUser");
+  },
 });
 </script>
 
