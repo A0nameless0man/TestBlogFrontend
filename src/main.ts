@@ -1,12 +1,12 @@
 import axios from "axios";
-import BootstrapVue3 from "bootstrap-vue-3";
+import "bootstrap/dist/css/bootstrap.css";
 import { createApp } from "vue";
+import Antd from "ant-design-vue";
 import App from "./App.vue";
+import "ant-design-vue/dist/antd.css";
 import router from "./router";
 import store from "./store";
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap-vue-3/dist/bootstrap-vue-3.css";
 
 axios.defaults.baseURL = "/api";
 
-createApp(App).use(BootstrapVue3).use(store).use(router).mount("#app");
+createApp(App).use(Antd).use(store).use(router).mount("#app");
