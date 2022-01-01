@@ -23,12 +23,12 @@
           >
           <a-menu-item key="articlelist"
             ><router-link to="/articlelist"
-              >Articlelist</router-link
+              >Article list</router-link
             ></a-menu-item
           >
         </a-menu>
       </a-layout-header>
-      <a-layout-content style="">
+      <a-layout-content style="padding: 80px 80px">
         <router-view />
       </a-layout-content>
       <a-layout-footer style="text-align: center">
@@ -41,6 +41,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 export default defineComponent({
+  data: () => ({ selectedKeys: ["home"] }),
   methods: {
     logout() {
       if (confirm("logout")) {
