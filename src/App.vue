@@ -42,7 +42,7 @@ export default defineComponent({
   methods: {
     logout() {
       if (confirm("logout")) {
-        this.$store.dispatch("logout");
+        this.$store.dispatch("Logout");
       }
     },
   },
