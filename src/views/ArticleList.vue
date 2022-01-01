@@ -20,8 +20,10 @@ export default defineComponent({
     "dynamic-article-list": GeneListComp<Article>(),
   },
   methods: {
-    loadData(page: number, size: number) {
-      return axios.get("/article", { params: { page, page_size: size } });
+    async loadData(page: number, size: number) {
+      return (
+        await axios.get("/article", { params: { page, page_size: size } })
+      ).data;
     },
   },
 });
