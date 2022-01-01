@@ -13,6 +13,11 @@ type LoginParam = {
   password: string;
 };
 export class State {
+  constructor() {
+    if (this.token) {
+      axios.defaults.headers.common["X-Auth-Token"] = this.token;
+    }
+  }
   loginStatus = "";
   token: string = localStorage.getItem(tokenKey) || "";
   user: User = new User();
