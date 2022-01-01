@@ -77,5 +77,8 @@ export default createStore({
     loading(state: State) {
       return state.loginStatus === "loading";
     },
+    user(stats: State) {
+      return stats.user;
+    },
   },
 });

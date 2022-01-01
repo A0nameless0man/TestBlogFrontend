@@ -9,6 +9,9 @@
           mode="horizontal"
           :style="{ lineHeight: '64px' }"
         >
+          <a-menu-item v-if="$store.getters.loggedIn" key="user"
+            >UserName:{{ $store.getters.user.username }}</a-menu-item
+          >
           <a-menu-item
             v-if="$store.getters.loggedIn"
             key="logout"
@@ -44,9 +47,7 @@ export default defineComponent({
   data: () => ({ selectedKeys: ["home"] }),
   methods: {
     logout() {
-      if (confirm("logout")) {
-        this.$store.dispatch("Logout");
-      }
+      this.$store.dispatch("Logout");
     },
   },
 });
