@@ -22,7 +22,7 @@
         </a-breadcrumb>
         <router-view />
       </a-layout-content>
-      <a-layout-footer style="text-align: center; flex: 1">
+      <a-layout-footer style="text-align: center">
         Ant Design ©2018 Created by Ant UED
       </a-layout-footer>
     </a-layout>
