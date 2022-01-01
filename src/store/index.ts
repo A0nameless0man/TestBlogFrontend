@@ -72,7 +72,7 @@ export default createStore({
   modules: {},
   getters: {
     loggedIn(state: State) {
-      return state.loginStatus === "success";
+      return state.token !== "";
     },
     loading(state: State) {
       return state.loginStatus === "loading";
