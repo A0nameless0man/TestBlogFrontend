@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BootstrapVue } from "bootstrap-vue-3";
+import BootstrapVue3 from "bootstrap-vue-3";
 import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
@@ -9,4 +9,4 @@ import "bootstrap-vue-3/dist/bootstrap-vue-3.css";
 
 axios.defaults.baseURL = "/api";
 
-createApp(App).use(BootstrapVue).use(store).use(router).mount("#app");
+createApp(App).use(BootstrapVue3).use(store).use(router).mount("#app");
