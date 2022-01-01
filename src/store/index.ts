@@ -1,19 +1,27 @@
-import { createStore } from "vuex";
+import axios from "axios";
+import { createStore, storeKey } from "vuex";
+
+const tokenKey = "token";
 
 class User {
   name = "";
   id = 0;
 }
-class State {
+
+type LoginParam = {
+  username: string;
+  password: string;
+};
+export class State {
   loginStatus = "";
-  token: string = localStorage.getItem("token") || "";
+  token: string = localStorage.getItem(tokenKey) || "";
   user: User = new User();
 }
 
 export default createStore({
   state: new State(),
   mutations: {
-    auth_request(state) {
+    auth_request(state: State) {
       state.loginStatus = "loading";
     },
     auth_success(state: State, payload: [string, User]) {
@@ -34,7 +42,32 @@ export default createStore({
     },
   },
   actions: {
-    Login(sotre);,
+    async Login(context, param: LoginParam) {
+      context.commit("auth_request");
+      try {
+        const resp = await axios.post("/login", param);
+        const token = resp.data.token as string;
+        const user = resp.data.user as User;
+        localStorage.setItem(tokenKey, token);
+        axios.defaults.headers.common["X-Auth-Token"] = token;
+        context.commit("auth_success", [token, user]);
+        return resp;
+      } catch (error) {
+        if (error instanceof Error) {
+          context.commit("auth_error", error.message);
+        }
+      }
+    },
+    async Logout(context) {
+      context.commit("auth_request");
+      try {
+        await axios.post("/logout");
+      } finally {
+        localStorage.removeItem(tokenKey);
+        delete axios.defaults.headers.common["X-Auth-Token"];
+        context.commit("auth_quit");
+      }
+    },
   },
   modules: {},
 });
