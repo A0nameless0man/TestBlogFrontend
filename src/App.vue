@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <a-layout class="layout">
+  <div style="height: 100%">
+    <a-layout style="height: 100%" class="layout">
       <a-layout-header>
         <div class="logo" />
         <a-menu
@@ -14,7 +14,7 @@
           <a-menu-item key="3">nav 3</a-menu-item>
         </a-menu>
       </a-layout-header>
-      <a-layout-content style="padding: 0 50px">
+      <a-layout-content style="">
         <a-breadcrumb style="margin: 16px 0">
           <a-breadcrumb-item>Home</a-breadcrumb-item>
           <a-breadcrumb-item>List</a-breadcrumb-item>
@@ -22,7 +22,7 @@
         </a-breadcrumb>
         <router-view />
       </a-layout-content>
-      <a-layout-footer style="text-align: center">
+      <a-layout-footer style="text-align: center; flex: 1">
         Ant Design ©2018 Created by Ant UED
       </a-layout-footer>
     </a-layout>
@@ -49,6 +49,7 @@ export default defineComponent({
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  height: 100%;
 }
 
 #nav {
