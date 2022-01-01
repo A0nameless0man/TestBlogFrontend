@@ -70,4 +70,9 @@ export default createStore({
     },
   },
   modules: {},
+  getters: {
+    loggedIn(state: State) {
+      return state.loginStatus === "success";
+    },
+  },
 });

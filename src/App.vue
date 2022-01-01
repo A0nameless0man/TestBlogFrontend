@@ -9,9 +9,23 @@
           mode="horizontal"
           :style="{ lineHeight: '64px' }"
         >
-          <a-menu-item key="1">nav 1</a-menu-item>
-          <a-menu-item key="2">nav 2</a-menu-item>
-          <a-menu-item key="3">nav 3</a-menu-item>
+          <a-menu-item
+            v-if="$store.getters.loggedIn"
+            key="logout"
+            @click="logout"
+            >logout</a-menu-item
+          >
+          <a-menu-item v-else key="login"
+            ><router-link to="/login"> Login</router-link></a-menu-item
+          >
+          <a-menu-item key="home"
+            ><router-link to="/">Home</router-link></a-menu-item
+          >
+          <a-menu-item key="articlelist"
+            ><router-link to="/articlelist"
+              >Articlelist</router-link
+            ></a-menu-item
+          >
         </a-menu>
       </a-layout-header>
       <a-layout-content style="">
