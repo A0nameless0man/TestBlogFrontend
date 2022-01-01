@@ -1,19 +1,28 @@
 <template>
-  <article-list />
+  <div>
+    <dynamic-article-list :loadFunc="loadData">
+      <template v-slot:default="item">
+        <a-list-item>
+          <a-card :title="item.title">{{ item.user.username }}</a-card>
+        </a-list-item>
+      </template>
+    </dynamic-article-list>
+  </div>
 </template>
 
 <script lang="ts">
 import axios from "axios";
 import { defineComponent } from "vue";
-import ListComp from "../components/List.vue";
+import { GeneListComp } from "../components/List.vue";
 import { Article } from "../store/entity";
 export default defineComponent({
   components: {
-    ArticleList: ListComp<Article>(async (page, size) => {
-      return (
-        await axios.get("/article", { params: { page: page, page_size: size } })
-      ).data;
-    }),
+    "dynamic-article-list": GeneListComp<Article>(),
+  },
+  methods: {
+    loadData(page: number, size: number) {
+      return axios.get("/article", { params: { page, page_size: size } });
+    },
   },
 });
 </script>

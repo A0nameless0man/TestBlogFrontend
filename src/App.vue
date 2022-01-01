@@ -29,6 +29,9 @@
               >Article list</router-link
             ></a-menu-item
           >
+          <a-menu-item key="new"
+            ><router-link to="/article/new">New</router-link></a-menu-item
+          >
         </a-menu>
       </a-layout-header>
       <a-layout-content style="padding: 80px 80px">
