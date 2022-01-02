@@ -2,9 +2,10 @@
   <div>
     <dynamic-article-list :loadFunc="loadData">
       <template v-slot:default="item">
-        <a-list-item>
+        <!-- <a-list-item>
           <a-card :title="item.title">{{ item.user.username }}</a-card>
-        </a-list-item>
+        </a-list-item> -->
+        {{ JSON.stringify(item) }}
       </template>
     </dynamic-article-list>
   </div>
