@@ -27,11 +27,11 @@
 <script lang="ts">
 import axios from "axios";
 import { defineComponent } from "vue";
-import { GeneListComp } from "../components/List.vue";
+import ListComp from "../components/List.vue";
 import { Article } from "../store/entity";
 export default defineComponent({
   components: {
-    "dynamic-article-list": GeneListComp<Article>(),
+    "dynamic-article-list": ListComp,
   },
   methods: {
     async loadData(page: number, size: number) {
