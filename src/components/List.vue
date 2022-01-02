@@ -1,6 +1,10 @@
 <template>
   <div>
-    <a-list item-layout="horizontal" :data-source="data">
+    <a-list
+      item-layout="horizontal"
+      :data-source="data"
+      :grid="{ gutter: 16, xs: 1, sm: 2, md: 4, lg: 4, xl: 6, xxl: 3, xxxl: 2 }"
+    >
       <template #renderItem="{ item }">
         <slot :item="item"></slot>
       </template>

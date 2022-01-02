@@ -14,32 +14,34 @@
   </div>
 </template>
 
-<script>
-import Vue from "vue";
-import { Prop } from "vue-property-decorator";
-import Component from "vue-class-component";
-import { Input } from "ant-design-vue";
-import { MarkdownEditor } from "@/components/MarkdownEditor.vue";
-@Component({ components: { MarkdownEditor, AInput: Input } })
-class ArticleEditor extends Vue {
-  @Prop() article;
-  @Prop() loading;
-  logedArticle = {};
+<script lang="ts">
+import { defineComponent } from "vue";
+import MarkdownEditor from "@/components/MarkdownEditor.vue";
+
+export default defineComponent({
+  props: { article: Object, loading: Boolean },
+  data: () => ({ localArticle: { content: "", title: "" } }),
   created() {
-    this.logedArticle = this.article;
-  }
-  update() {
-    this.$emit("update", this.logedArticle);
-  }
-  updateContent(content) {
-    this.logedArticle.content = content;
-    this.update();
-  }
-  updateTitle(title) {
-    this.logedArticle.title = title;
-    this.update();
-  }
-}
-export default ArticleEditor;
-export { ArticleEditor };
+    this.localArticle = JSON.parse(JSON.stringify(this.article)) as {
+      content: string;
+      title: string;
+    };
+  },
+  methods: {
+    update() {
+      this.$emit("update", this.localArticle);
+    },
+    updateContent(content: string) {
+      this.localArticle.content = content;
+      this.localArticle.title = this.article?.title;
+      this.update();
+    },
+    updateTitle(title: string) {
+      this.localArticle.title = title;
+      this.localArticle.content = this.article?.content;
+      this.update();
+    },
+  },
+  components: { MarkdownEditor },
+});
 </script>

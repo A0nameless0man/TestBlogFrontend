@@ -5,22 +5,18 @@
   </div>
 </template>
 
-<script>
-import Vue from "vue";
-import { Prop } from "vue-property-decorator";
-import Component from "vue-class-component";
-import { Input } from "ant-design-vue";
-import { MarkdownRender } from "@/components/MarkdownRender.vue";
-@Component({ components: { MarkdownRender, ATextarea: Input.TextArea } })
-class MarkdownEditor extends Vue {
-  @Prop() content;
-  @Prop() loading;
-  update(e) {
-    this.$emit("update", e.target.value);
-  }
-}
-export default MarkdownEditor;
-export { MarkdownEditor };
+<script lang="ts">
+import { defineComponent } from "vue";
+import MarkdownRender from "@/components/MarkdownRender.vue";
+export default defineComponent({
+  props: { content: String, loading: Boolean },
+  methods: {
+    update(e: { target: { value: string } }) {
+      this.$emit("update", e.target.value);
+    },
+  },
+  components: { MarkdownRender },
+});
 </script>
 
 <style scoped>

@@ -2,10 +2,23 @@
   <div>
     <dynamic-article-list :loadFunc="loadData">
       <template v-slot:default="item">
-        <!-- <a-list-item>
-          <a-card :title="item.title">{{ item.user.username }}</a-card>
-        </a-list-item> -->
-        {{ JSON.stringify(item) }}
+        <a-list-item>
+          <a-card
+            ><template v-slot:title
+              ><router-link :to="`/article/${item.item.id}`"
+                ><h3>
+                  {{ item.item.title ? item.item.title : "NO TITLE" }}
+                </h3></router-link
+              ></template
+            >
+            <template v-slot:cover
+              ><p>Author:{{ item.item.user.username }}</p>
+              <p>
+                CreatedAt:{{ new Date(item.item.created).toDateString() }}
+              </p></template
+            ></a-card
+          >
+        </a-list-item>
       </template>
     </dynamic-article-list>
   </div>

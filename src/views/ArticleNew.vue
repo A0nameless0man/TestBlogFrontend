@@ -1,15 +1,42 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld :msg="`This is article New`" />
+    <article-editor :article="localArticle" @update="update" />
+    <a-button
+      type="primary"
+      style="margin: 10px"
+      :disabled="loading"
+      @click="submit"
+      >Save</a-button
+    >
   </div>
 </template>
 
 <script lang="ts">
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
-import { defineComponent } from "@vue/runtime-core";
+import { defineComponent } from "vue";
+import ArticleEditor from "@/components/ArticleEditor.vue";
+import { Article } from "@/store/entity";
+import axios from "axios";
 
 export default defineComponent({
-  components: { HelloWorld },
+  data: () => ({
+    localArticle: { content: "", title: "" },
+    loading: false,
+  }),
+  components: { ArticleEditor },
+
+  methods: {
+    update(payload: Article) {
+      this.localArticle = payload;
+    },
+    async submit() {
+      this.loading = true;
+      try {
+        const resp = await axios.post("/article", this.localArticle);
+        this.$router.push(`/article/${resp.data.id}`);
+      } finally {
+        this.loading = false;
+      }
+    },
+  },
 });
 </script>

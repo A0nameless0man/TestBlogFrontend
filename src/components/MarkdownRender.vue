@@ -4,23 +4,18 @@
   </a-card>
 </template>
 
-<script>
-import Vue from "vue";
-import { Prop } from "vue-property-decorator";
-import Component from "vue-class-component";
-import { Card } from "ant-design-vue";
-import marked from "marked";
-@Component({ components: { ACard: Card } })
-class MarkdownRender extends Vue {
-  @Prop() title;
-  @Prop() content;
-  @Prop() loading;
-  get compiledMarkdown() {
-    return marked(this.content);
-  }
-}
-export default MarkdownRender;
-export { MarkdownRender };
+<script lang="ts">
+import { defineComponent } from "vue";
+import { marked } from "marked";
+
+export default defineComponent({
+  props: { title: String, content: String, loading: Boolean },
+  computed: {
+    compiledMarkdown() {
+      return marked(this.content ?? "");
+    },
+  },
+});
 </script>
 
 <style scoped>

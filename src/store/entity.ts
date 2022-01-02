@@ -13,5 +13,5 @@ export interface Article extends AutoEntity {
   id: number;
   user?: User;
   title: string;
-  content?: string;
+  content: string;
 }

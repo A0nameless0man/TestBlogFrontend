@@ -29,7 +29,7 @@
               >Article list</router-link
             ></a-menu-item
           >
-          <a-menu-item key="new"
+          <a-menu-item key="new" v-if="$store.getters.loggedIn"
             ><router-link to="/article/new">New</router-link></a-menu-item
           >
         </a-menu>
@@ -38,7 +38,7 @@
         <router-view />
       </a-layout-content>
       <a-layout-footer style="text-align: center">
-        Ant Design ©2018 Created by Ant UED
+        HuHugang @ 2021
       </a-layout-footer>
     </a-layout>
   </div>
